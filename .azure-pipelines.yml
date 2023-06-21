@@ -1,5 +1,7 @@
 trigger:
-  - main
+  branches:
+    exclude:
+      - main
 
 pool:
   personal-laptop: 'rlandesman-mbp'
