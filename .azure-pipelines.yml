@@ -23,6 +23,6 @@ steps:
   displayName: 'Build and push image'
   inputs:
     # Use the dockerfile in the root directory
-    Dockerfile: './Dockerfile'
+    Dockerfile: '**/Dockerfile'
     command: buildAndPush
     repository: '$(DockerImageName)'
