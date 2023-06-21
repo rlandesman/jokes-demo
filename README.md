@@ -63,7 +63,7 @@ The Azure repository has several security features enabled, mocking a real produ
 
 - I have created a PAT to authenticate Azure Pipelines running locally against the cloud. This token expires in 30 days, is stored locally in a 1password vault, and has scoped permissions for Agent Pools management only.
 - Added myself as the only approved approver for PRs (and for now allowed myself to self-approve PRs, one man team!)
-- 
+-
 
 ## Help
 
@@ -93,3 +93,9 @@ Inspiration, code snippets, etc.
 * [dbader](https://github.com/dbader/readme-template)
 * [zenorocha](https://gist.github.com/zenorocha/4526327)
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+
+
+TODO:
+
+- Terraform the resources used
+- Documentation everywhere
