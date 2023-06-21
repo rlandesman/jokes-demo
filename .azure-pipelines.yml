@@ -4,12 +4,8 @@ resources:
 pool:
   name: personal-laptop
 
-trigger: none
-
-pr:
-  branches:
-    include:
-    - '*'
+trigger:
+  - master
 
 variables:
   DockerImageName: 'production-390505/JokesDemo'
@@ -18,11 +14,20 @@ steps:
   displayName: 'Login to Container Registry'
   inputs:
     command: login
-    containerRegistry: 'gcr-registry'
+    containerRegistry: 'gcr-tutorial'
 - task: Docker@2
-  displayName: 'Build and push image'
+  displayName: 'Build image'
   inputs:
-    # Use the dockerfile in the root directory
+    command: build
     Dockerfile: '**/Dockerfile'
-    command: buildAndPush
+    tags: |
+      $(DockerImageName)
     repository: '$(DockerImageName)'
+    arguments: '--platform linux/amd64'
+- task: Docker@2
+  displayName: 'Push image'
+  inputs:
+    command: push
+    repository: '$(DockerImageName)'
+    tags: |
+      $(DockerImageName)
