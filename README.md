@@ -58,6 +58,8 @@ docker build -t my-app .
 docker run -p 8080:8080 my-app
 ```
 
+You should now be able to curl `localhost:8080` and see the app running!
+
 ## Automation
 
 ## Security
@@ -66,16 +68,18 @@ The Azure repository has several security features enabled, mocking a real produ
 
 - I have created a PAT to authenticate Azure Pipelines running locally against the cloud. This token expires in 30 days, is stored locally in a 1password vault, and has scoped permissions for Agent Pools management only.
 - Added myself as the only approved approver for PRs (and for now allowed myself to self-approve PRs, one man team!)
-- Vulnerability scanning in GCR itself
+- Vulnerability scanning in GCR and in the build pipeline using Trivy
   - This would in the future be linked to slack notifications and/or automated JIRA ticket creation to help promote security best-practices
--
+  - More security tooling such as [git-secrets](https://github.com/awslabs/git-secrets) and [rootfs](https://aquasecurity.github.io/trivy/v0.27.1/docs/vulnerability/scanning/rootfs/) scanning would be introduced here
+
+
+![trivy-results](img/trivy.png)
 
 ## TODO
 
 Given more time, here are some ideas of how I would expand on this project:
 
 1. Codify the release pipelines - today they were manually created however this can lead to infrastructure drift and lack of standardization
-2.
 
 ## Authors
 

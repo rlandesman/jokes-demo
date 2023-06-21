@@ -1,5 +1,17 @@
 provider "google" {
-  credentials = file("<PATH_TO_YOUR_JSON_KEY_FILE>")
-  project     = "<YOUR_GCP_PROJECT_ID>"
-  region      = "<YOUR_GCP_REGION>"
+  credentials = file("${var.credentials}")
+  project     = var.project
+  region      = var.region
+}
+
+resource "google_service_account" "service_account" {
+  account_id   = "terraform-service-account"
+  display_name = "Terraform Service Account"
+  project      = var.project
+}
+
+resource "google_project_iam_member" "project_iam_member" {
+  project = var.project
+  role    = "roles/viewer"
+  member  = "serviceAccount:${google_service_account.service_account.email}"
 }
