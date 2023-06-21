@@ -3,8 +3,14 @@ resources:
     fetchDepth: 1
 pool:
   name: personal-laptop
-trigger:
-- master
+
+trigger: none
+
+pr:
+  branches:
+    include:
+    - '*'
+
 variables:
   DockerImageName: 'production-390505/JokesDemo'
 steps:
