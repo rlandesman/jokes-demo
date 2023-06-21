@@ -15,11 +15,13 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <div className="App">
+    <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div className="content" style={{ background: 'lightblue', padding: '20px', borderRadius: '10px' }}>
         <p>{joke}</p>
       </div>
     </div>
+  </div>
   );
 }
 
