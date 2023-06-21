@@ -9,7 +9,6 @@ trigger:
 
 variables:
   DockerImageName: 'production-390505/JokesDemo'
-  DOCKER_BUILDKIT: 1
 
 steps:
 - task: Docker@2
