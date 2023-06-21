@@ -14,7 +14,7 @@ steps:
   displayName: 'Login to Container Registry'
   inputs:
     command: login
-    containerRegistry: 'gcr-tutorial'
+    containerRegistry: 'gcr-registry'
 - task: Docker@2
   displayName: 'Build image'
   inputs:
