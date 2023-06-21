@@ -5,7 +5,7 @@ pool:
   name: personal-laptop
 
 trigger:
-  - master
+  - main
 
 variables:
   DockerImageName: 'production-390505/JokesDemo'
@@ -15,6 +15,7 @@ steps:
   inputs:
     command: login
     containerRegistry: 'gcr-registry'
+
 - task: Docker@2
   displayName: 'Build image'
   inputs:
