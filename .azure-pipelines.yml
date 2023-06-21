@@ -2,7 +2,7 @@ resources:
   - repo: self
     fetchDepth: 1
 pool:
-  name: personal-laptop
+  vmImage: 'ubuntu-latest'
 
 trigger:
   - main
