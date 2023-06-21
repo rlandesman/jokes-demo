@@ -34,15 +34,13 @@ stages:
         inputs:
           command: init
           workingDirectory: $(terraformWorkingDirectory)
-          commandOptions: '-backend-config="credentials=${{ env.GOOGLE_CREDENTIALS }}"'
-        env:
-          GOOGLE_CREDENTIALS: $(GOOGLE_CREDENTIALS)
       # Step 4: run Terraform validate to validate HCL syntax
       - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
         displayName: 'Run terraform validate'
         inputs:
           command: validate
           workingDirectory: $(terraformWorkingDirectory)
+      # Step 5: run Terraform plan to validate HCL syntax
       - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
         displayName: 'Run terraform plan'
         inputs:
@@ -50,3 +48,5 @@ stages:
           workingDirectory: $(terraformWorkingDirectory)
           # The default project name where resources are managed. Defining project on a resource takes precedence over this.
           providerGoogleProject: development-390505
+          providerGoogleCredentials: $(GOOGLE_CREDENTIALS)
+          providerGoogleRegion: 'us-central1'
