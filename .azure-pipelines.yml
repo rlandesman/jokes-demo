@@ -11,6 +11,10 @@ variables:
   DockerImageName: 'production-390505/JokesDemo'
 
 steps:
+- task: trivy@1
+  inputs:
+    path: .
+
 - task: Docker@2
   displayName: 'Login to Container Registry'
   inputs:
