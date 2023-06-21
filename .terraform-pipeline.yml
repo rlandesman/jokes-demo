@@ -1,16 +1,15 @@
 # Azure Pipeline that run basic continuous integration on a Terraform project
-
-# This makes sure the pipeline is triggered every time code is pushed in the validation-testing example source, on all branches.
 trigger:
   branches:
     include:
     - '*'
 
 variables:
-  azureLocation: 'us-central1'
+  gcpLocation: 'us-central1'
   # Terraform settings
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
   terraformVersion: '0.12.25'
+  gcpProject: 'development-390505'
 
 stages:
   - stage: TerraformContinuousIntegration
@@ -29,6 +28,7 @@ stages:
         displayName: 'Install Terraform'
         inputs:
           terraformVersion: $(terraformVersion)
+      # Step 3: Run terraform init on the Terraform project
       - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
         displayName: 'Run terraform init'
         inputs:
@@ -46,7 +46,6 @@ stages:
         inputs:
           command: plan
           workingDirectory: $(terraformWorkingDirectory)
-          # The default project name where resources are managed. Defining project on a resource takes precedence over this.
-          providerGoogleProject: development-390505
+          providerGoogleProject: $(gcpProject)
           providerGoogleCredentials: $(GOOGLE_CREDENTIALS)
-          providerGoogleRegion: 'us-central1'
+          providerGoogleRegion: $(gcpLocation)
