@@ -3,7 +3,7 @@ FROM openjdk:17 as build-spring
 RUN microdnf install findutils
 WORKDIR /usr/src/app
 COPY ./jokes-backend .
-RUN ./gradlew build --stacktrace --no-daemon
+RUN ./gradlew build
 
 # Stage 2: Build the React application
 FROM node:14 as build-react
