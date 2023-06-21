@@ -5,7 +5,7 @@ pool:
   name: personal-laptop
 
 trigger:
-  - master
+  - main
 
 variables:
   DockerImageName: 'production-390505/JokesDemo'
@@ -15,19 +15,19 @@ steps:
   inputs:
     command: login
     containerRegistry: 'gcr-registry'
+
 - task: Docker@2
   displayName: 'Build image'
   inputs:
     command: build
     Dockerfile: '**/Dockerfile'
-    tags: |
-      $(DockerImageName)
     repository: '$(DockerImageName)'
+    tags: '$(Build.BuildId)'
     arguments: '--platform linux/amd64'
+
 - task: Docker@2
   displayName: 'Push image'
   inputs:
     command: push
     repository: '$(DockerImageName)'
-    tags: |
-      $(DockerImageName)
+    tags: '$(Build.BuildId)'
