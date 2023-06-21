@@ -9,7 +9,7 @@ function App() {
   }, []);
 
   const fetchJoke = async () => {
-    const response = await fetch('http://localhost:8080/joke');
+    const response = await fetch('http://localhost:3000/joke');
     const data = await response.text();
     setJoke(data);
   };
