@@ -3,21 +3,31 @@ resources:
     fetchDepth: 1
 pool:
   name: personal-laptop
+
 trigger:
-- master
+  - master
+
 variables:
-  TargetFramework: 'net6.0'
-  BuildConfiguration: 'Release'
   DockerImageName: 'production-390505/JokesDemo'
 steps:
 - task: Docker@2
   displayName: 'Login to Container Registry'
   inputs:
     command: login
-    containerRegistry: 'gcr-tutorial'
+    containerRegistry: 'gcr-registry'
 - task: Docker@2
-  displayName: 'Build and push image'
+  displayName: 'Build image'
   inputs:
-    Dockerfile: 'Dockerfile'
-    command: buildAndPush
+    command: build
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(DockerImageName)
     repository: '$(DockerImageName)'
+    arguments: '--platform linux/amd64'
+- task: Docker@2
+  displayName: 'Push image'
+  inputs:
+    command: push
+    repository: '$(DockerImageName)'
+    tags: |
+      $(DockerImageName)
