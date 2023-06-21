@@ -17,9 +17,7 @@ public class JokesBackendApplication {
 	@RestController
 	public class JokeController {
 
-		// The following CORS annotation is bad practice in production code because it allows any origin to access the API.
-		// It is only used here to allow the React frontend to access the API during development.
-		@CrossOrigin(origins = "http://localhost:3000")
+
 		@GetMapping("/joke")
 		public String getJoke() {
 			RestTemplate restTemplate = new RestTemplate();
