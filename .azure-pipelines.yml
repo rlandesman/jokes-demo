@@ -24,7 +24,7 @@ steps:
     Dockerfile: '**/Dockerfile'
     repository: '$(DockerImageName)'
     tags: '$(Build.BuildId)'
-    arguments: '--platform linux/amd64'
+    arguments: '--platform linux/amd64 --progress=plain'
 
 - task: Docker@2
   displayName: 'Push image'
