@@ -63,6 +63,8 @@ The Azure repository has several security features enabled, mocking a real produ
 
 - I have created a PAT to authenticate Azure Pipelines running locally against the cloud. This token expires in 30 days, is stored locally in a 1password vault, and has scoped permissions for Agent Pools management only.
 - Added myself as the only approved approver for PRs (and for now allowed myself to self-approve PRs, one man team!)
+- Vulnerability scanning in GCR itself
+  - This would in the future be linked to slack notifications and/or automated JIRA ticket creation to help promote security best-practices
 -
 
 ## Help
