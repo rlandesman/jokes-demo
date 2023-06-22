@@ -69,7 +69,7 @@ docker build -t my-app .
 docker run -p 3000:3000 my-app
 ```
 
-You should now be able to curl `localhost:8080` and see the app running!
+You should now be able to open `localhost:3000` in a browser and see your app running
 
 ### Remote Cloud Run URL
 
