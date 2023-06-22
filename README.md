@@ -47,8 +47,16 @@ In shell #2:
 curl http://localhost:3000/joke
 ```
 
-You should also be able to compile the assets from react and place them into the backend folder to serve. I have not
-tested this functionality, but it effectivly replicates the process of the Dockerfile.
+You should see a random joke printed to the console!
+
+In shell #3:
+
+```shell
+cd jokes-frontend
+npm start
+```
+
+You should now see the full application launch on localhost
 
 ### Executing using Docker
 
@@ -121,6 +129,7 @@ The Azure repository has several security features enabled, mocking a real produ
 Given more time, here are some ideas of how I would expand on this project:
 
 1. Codify the release pipelines - today they were manually created however this can lead to infrastructure drift and lack of standardization
+2. DNS - I would add a DNS record to the Cloud Run app to make it easier to access
 
 ## Authors
 
