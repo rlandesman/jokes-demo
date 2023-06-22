@@ -6,8 +6,7 @@ An application to serve random jokes
 
 ## Description
 
-This application is built using a React frontend and a Springboot backend. Truthfully there is nothing fancy nor unique
-about the application code, as this project largely focuses on the DevOps tooling and principles surrounding the app.
+This application is built using a React frontend and a Springboot backend. This project largely focuses on the DevOps tooling and principles surrounding the app.
 
 The DevOps tooling includes:
 
@@ -50,7 +49,6 @@ curl http://localhost:3000/joke
 
 You should also be able to compile the assets from react and place them into the backend folder to serve. I have not
 tested this functionality, but it effectivly replicates the process of the Dockerfile.
-
 
 ### Executing using Docker
 

@@ -9,7 +9,8 @@ function App() {
   }, []);
 
   const fetchJoke = async () => {
-    const response = await fetch('/joke');
+    const apiUrl = process.env.NODE_ENV === 'production' ? '/joke' : 'http://localhost:3000/joke';
+    const response = await fetch(apiUrl);
     const data = await response.text();
     setJoke(data);
   };

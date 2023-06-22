@@ -1,27 +1,34 @@
 resources:
   - repo: self
     fetchDepth: 1
+
+# Use self-hosted runner (on my M1 laptop)
 pool:
   name: personal-laptop
 
+# Trigger on all pushes to main branch
 trigger:
   - main
 
+# Set the docker image name as a variable
 variables:
   DockerImageName: 'production-390505/JokesDemo'
 
 steps:
+# Run trivial security scan, do not exit error on findings
 - task: trivy@1
   inputs:
     path: .
     exitCode: '0'
 
+# Login to GCR
 - task: Docker@2
   displayName: 'Login to Container Registry'
   inputs:
     command: login
     containerRegistry: 'gcr-registry'
 
+# Build the image, note the --platform flag for cross-platform builds
 - task: Docker@2
   displayName: 'Build image'
   inputs:
@@ -31,6 +38,7 @@ steps:
     tags: '$(Build.BuildId)'
     arguments: '--platform linux/amd64 --progress=plain'
 
+# Push the image to GCR
 - task: Docker@2
   displayName: 'Push image'
   inputs:
